@@ -126,4 +126,8 @@ module.exports = function(app, passport, streamable) {
         }
     )
 
+var angular = require('../app/controllers/angular')
+ app.get('/angular', angular.index)
+
+
 }
