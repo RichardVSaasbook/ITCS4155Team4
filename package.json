@@ -26,7 +26,8 @@
         "connect-flash": "*",
         "view-helpers": "*",
         "request": "~2.22.0",
-        "bower":"*"
+        "bower":"*",
+	"keys": "latest"
     },
     "devDependencies": {
         "phantomjs":"latest",

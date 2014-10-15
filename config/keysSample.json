@@ -1,12 +1,12 @@
 {
     "twitter":
     {
-        "configured": 0, 
+        "configured": 1,
         "keys":{
-            "consumer_key":   "fill this in with your twitter keys",
-            "consumer_secret":"me too!",
-            "access_token":"me too!",
-            "access_token_secret":"me too! then change configured to 1"
+            "consumer_key":   "EFa05Gt5QztsZJ8dxhyxUcXe2",
+            "consumer_secret":"0jvKgzD8APxcLmFhBu3q7fDx672sQFeBfSlkAMKzRbsnTYUyOA",
+            "access_token":"2826560726-Wv99PtIb27iAseo4tEkglVxWgg9mNs5gTe8HrdN",
+            "access_token_secret":"e1EF7ecnG2qbADRTAtS4IzxNA3DRSLu5QPvAkj8CHGBEm"
         }
     },
     "rotten":

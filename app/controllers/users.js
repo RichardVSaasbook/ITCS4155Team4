@@ -16,8 +16,6 @@ var login = function (req, res) {
 exports.authCallback = login
 exports.session = login
 
-
-
 exports.index = function (req, res) {
     if (!user) var user
     if (req.user)
@@ -37,7 +35,7 @@ exports.login = function (req, res) {
     else
         var user = ""
 
-    msg = req.flash('loginMessage')
+	var msg = ''
     res.render("users/login", {
         title: 'Login',
         user: user,
@@ -153,4 +151,57 @@ exports.user = function (req, res, next, id) {
                 req.profile = user
             next()
         })
+}
+
+exports.info = function(req, res) {
+	var user = req.user
+	var response = {}
+	if (user) {
+		response.email = user.email
+		response.username = user.username
+		response.apikey = user.apikey
+	}
+	res.setHeader('Content-Type: application/json')
+	res.end(JSON.stringify(response))
+}
+
+exports.csrf = function(req, res) {
+	var response = {}
+	response.csrf = req.csrfToken()
+	res.setHeader('Content-Type: application/json')
+	res.end(JSON.stringify(response))
+}
+
+exports.createAngular = function (req, res) {
+    console.log("Creating user: "+ req.body.email)
+    var user = new User(req.body)
+    user.provider = 'local'
+    user.generateKey()
+    user.save(function (err) {
+        if (err) {
+            return res.render('users/signup', {
+                    errors: (err.errors),
+                    user: user,
+                    title: 'Sign up'
+             })
+        }
+  
+        // manually login the user once successfully signed up
+        req.logIn(user, function(err) {
+            if (err) return next(err)
+                return res.redirect('/angular')
+        })
+    })
+}
+
+exports.userLogout = function(req, res) {
+	req.logout()
+	res.end()
+}
+
+exports.flashLoginMessage = function(req, res) {
+	var response = {}
+	response.message = req.flash('loginMessage')
+	res.setHeader('Content-Type: application/json')
+	res.end(JSON.stringify(response))
 }

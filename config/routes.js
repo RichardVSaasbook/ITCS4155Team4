@@ -56,7 +56,12 @@ module.exports = function(app, passport, streamable) {
     //user routes
     var users = require('../app/controllers/users')
     app.get('/signup', users.signup, handleError)
-    app.post('/users', users.create, handleError)
+    app.post('/users', users.createAngular, handleError)
+	app.get('/user-info', users.info)
+	app.get('/csrf', users.csrf)
+	app.post('/logout', users.userLogout)
+
+	app.get('/flashLoginMessage', users.flashLoginMessage)
 
     app.get('/login', users.login, handleError)
     app.get('/home', isLoggedIn, users.display, handleError)
@@ -96,8 +101,8 @@ module.exports = function(app, passport, streamable) {
 
     app.post('/users/session',
         passport.authenticate('local-log', {
-            successRedirect: '/home',
-            failureRedirect: '/login',
+            successRedirect: '/angular',
+            failureRedirect: '/angular/#login',
             failureFlash: true
         }))
     //, 

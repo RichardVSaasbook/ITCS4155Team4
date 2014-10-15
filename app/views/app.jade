@@ -1,1 +1,40 @@
-h1 .... what do we do now
+doctype html
+html(lang="en", data-ng-app="bridges", data-ng-controller="ApplicationCtrl")
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width')
+		title BRIDGES
+
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+
+		base(href='/angular/')
+
+		{{ getExtraCSS() }}
+		{{ getExtraJS() }}
+		{{ getExtraHead() }}
+	body
+		.navbar.navbar-default
+			.container
+				.navbar-header
+					a(href='#').navbar-brand Bridges
+				.navbar-header
+					a(href='http://bridgesuncc.github.io').navbar-brand Documentation
+				.navbar-collapse.collapse
+					ul(data-ng-if='isNotLoggedIn').nav.navbar-nav.navbar-right
+						li
+							a(href='#/login') Log In
+					ul(data-ng-if='isLoggedIn').nav.navbar-nav.navbar-right
+						li
+							a(href='#/home') {{ user.username }}
+						li
+							a(data-ng-click='logout()', style='cursor: pointer') Log Out
+		.container.clearfix
+		div(data-ui-view="content")
+		div(data-ui-view="footerjs")
+		script(src='/components/angular/angular.min.js')
+		script(src='/components/angular-ui-router/release/angular-ui-router.min.js')
+		script(src='/js/angular/main.js')
+		script(src='/js/angular/controllers/ApplicationCtrl.js')
+		script(src='/js/angular/controllers/UsersCtrl.js')
+		script(src='/js/angular/controllers/UserLogoutCtrl.js')
