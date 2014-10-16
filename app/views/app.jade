@@ -21,7 +21,7 @@ html(lang="en", data-ng-app="bridges", data-ng-controller="ApplicationCtrl")
 				.navbar-header
 					a(href='http://bridgesuncc.github.io').navbar-brand Documentation
 				.navbar-collapse.collapse
-					ul(data-ng-if='isNotLoggedIn').nav.navbar-nav.navbar-right
+					ul(data-ng-if='!isLoggedIn').nav.navbar-nav.navbar-right
 						li
 							a(href='#/login') Log In
 					ul(data-ng-if='isLoggedIn').nav.navbar-nav.navbar-right

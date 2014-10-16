@@ -1,5 +1,5 @@
-bridges.controller('UsersCtrl', ['$scope', '$http', '$controller', function($scope, $http, $controller) {
-	angular.extend(this, $controller('ApplicationCtrl', {$scope: $scope, $http: $http}))
+bridges.controller('UsersCtrl', ['$scope', '$http', '$state', '$controller', function($scope, $http, $state, $controller) {
+	angular.extend(this, $controller('ApplicationCtrl', {$scope: $scope, $http: $http, $state: $state}))
 	
 	$http.get('/csrf').success(function(data) {
 		$scope.csrftoken = data.csrf
