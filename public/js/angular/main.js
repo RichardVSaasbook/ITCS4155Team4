@@ -32,5 +32,11 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 			"content": {templateUrl:"/angular_templates/404.html"}
 		}
 	})
+	.state("gallery",{
+		url: "/assignments/:assignmentID",
+		views: {
+			"content": {templateUrl:"/angular_templates/assignments/gallery.html", controller: 'GalleryCtrl'}
+		}
+	})
 			
 })
