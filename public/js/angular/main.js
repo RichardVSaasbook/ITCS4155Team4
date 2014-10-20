@@ -1,11 +1,7 @@
 var bridges = angular.module('bridges', ['ui.router']);
 
 bridges.config(function($stateProvider, $urlRouterProvider) {
-	/*$urlRouterProvider.when("/logout", ['$state', '$http', function($state, $http) {
-		$http.post("/logout").success(function() {
-			$state.go("login")
-		})
-	}])*/
+	$urlRouterProvider.otherwise('/404')
 
 	$stateProvider
 	.state("home", {
@@ -30,4 +26,11 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 			"form@signup": {templateUrl: "/angular_templates/users/signup/form.html", controller: 'UsersCtrl'}
 		}
 	})
+	.state("404", {
+		url: "/404",
+		views: {
+			"content": {templateUrl:"/angular_templates/404.html"}
+		}
+	})
+			
 })
