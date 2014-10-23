@@ -1,0 +1,80 @@
+<script src="/components/d3/d3.min.js"></script>
+  <script src="/components/jquery/dist/jquery.min.js"></script>
+
+<script>
+      var vistype = "#{vistype}"
+        $("li").removeClass("active")
+        if (vistype=="tree") {
+            $("#tree").addClass("active")
+        }
+        else if (vistype=="queue") {
+            $("#queue").addClass("active")
+        }
+        else $("#nodelink").addClass("active") 
+</script>
+
+<script>
+	var owner = "#{owner}"
+        if (owner==="false") {
+             $("#vis").css("width","90%") 
+        } 
+        var shared = "#{shared}"
+        $("#private").prop('checked',false)
+        $("#public").prop('checked',false)
+        if (shared==="true")
+            $("#public").prop('checked',true)
+        else
+            $("#private").prop('checked',true)
+</script>
+
+<script>
+	var data = !{JSON.stringify(data)}
+     
+	var assignmentID = !{JSON.stringify(assignmentID)}
+</script>
+	<div data-ng-switch="ng-switch">
+	<script scr = '/js/graph.js' data-ng-switch-when="vistype == 'nodelink'"></script>
+	<div data-ng-switch-when="vistype == 'tree'"> 
+        	<link rel='stylesheet', href='/css/vis/tree.css'></link>
+	        <script src = '/js/bst/lib/bst.js'></script>
+	</div>
+	<script src = '/js/queue.js' data-ng-switch-when="vistype == 'queue'"></script> 
+    	<script data-ng-switch-default="ng-switch-default"> 
+		var error = !{JSON.stringify(data)}
+		    $("#vis")
+			.html(error.error)
+			.css('color', '#eb6864')
+			.css('font-size', '24px')
+			.css('padding', '50px')
+	</script>
+	</div>
+<script src="/js/visconfig.js">
+</script>
+<script>
+      function toggleShare (selected) {
+          var assignmentID = !{JSON.stringify(assignmentID)}
+          $.ajax({
+              url: "/assignments/"+assignmentID+"/share/"+selected,
+              type: "post"
+          }).done(function() {
+              console.log("visibility updated")
+          }).error(function(err){
+              console.log(err)    
+          });    
+          
+      }   
+      function setvis (selected) {
+          var assignmentID = !{JSON.stringify(assignmentID)}
+          $.ajax({
+              url: "/assignments/"+assignmentID+"/vistype/"+selected,
+              type:"post"
+          }).done(function() {
+              location.reload()
+              console.log("visualization type updated")    
+          }).error(function(err) {
+              errmsg = JSON.parse(err.responseText)
+              console.log("Error: "+errmsg.error) 
+          });
+      }
+      
+</script>
