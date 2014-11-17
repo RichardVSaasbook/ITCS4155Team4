@@ -1,0 +1,25 @@
+{
+    "twitter":
+    {
+        "configured": 1,
+        "keys":{
+            "consumer_key":   "EFa05Gt5QztsZJ8dxhyxUcXe2",
+            "consumer_secret":"0jvKgzD8APxcLmFhBu3q7fDx672sQFeBfSlkAMKzRbsnTYUyOA",
+            "access_token":"2826560726-Wv99PtIb27iAseo4tEkglVxWgg9mNs5gTe8HrdN",
+            "access_token_secret":"e1EF7ecnG2qbADRTAtS4IzxNA3DRSLu5QPvAkj8CHGBEm"
+        }
+    },
+    "rotten":
+    {
+        "configured": 0,
+        "apikey": "put rottentomato api key here, change configured to 1"
+    }, 
+    "actors": {
+        "configured": 0,
+        "apikey":"put themoviedatabase api key here, then config to 1"
+    },
+    "facebook":
+    {
+        "configured": 0 
+    }
+}

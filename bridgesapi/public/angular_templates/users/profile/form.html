@@ -1,0 +1,60 @@
+form.html
+
+if(user)
+
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    <h3 class="panel-title">User information</h3>
+  </div>
+  <div class="panel-body">     </div>
+</div>
+
+<div><strong class="col-lg-4">User Name:</strong>
+  <div id="user">#user.username</div>
+
+<div> <strong class="col-lg-4">User Name: </strong>
+  <div id="user"></div>
+</div>
+<div> 
+  <Strong class="col-lg-4">Email: </Strong>
+  <div id="email"></div>
+</div>
+<div>
+  <Strong class="col-lg-4">API Sha1 Key:</Strong>
+  <div id="api"></div>
+</div><br>
+
+if(acct.domainProvider)
+
+
+<div>
+<Strong class="col-lg-4">Authenticated: </Strong>
+#{acct.domainProvider}
+else 
+<div> 
+<Strong class="col-lg-6">Not Authenticated: </Strong>
+</div>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Profile Options</h3>
+  </div>
+  <div class="panel-body">  </div>
+</div>
+
+var src = "/users/"+user.id
+<form action="src" method="post"></form>
+<strong style="color:firebrick">WARNING: this will PERMANENTLY delete your account</strong>
+<div style="margin-top:20px;">input(type="hidden", name="_csrf", value=csrftoken)   </div>
+<div class="col-lg-8">
+
+ <input id="input" type="text" placeholder="type your username, then" onkeyup="checkUser(this.value)" style="float:left; margin-right:25px;" class="form-control">
+</div>
+
+<input type="hidden" name="_method" value="DELETE" class="form-control">
+
+<input id="submit" type="submit" value="Delete Account" class="btn btn-primary disabled">
+
+else
+<div class="well">
+  <h1>You are not logged in! </h1><a href="/login" class="btn btn-primary">Log me in</a>
+</div>
