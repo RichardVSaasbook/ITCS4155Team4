@@ -10,6 +10,7 @@ var mongoose = require('mongoose')
 var UserSchema = new Schema({
     email: { type: String, default: '' },
     username: { type: String, default: '' },
+    accounttype: { type: String, default: '' },
     provider: { type: String, default: '' },
     hashed_password: { type: String, default: '' },
     salt: { type: String, default: '' },

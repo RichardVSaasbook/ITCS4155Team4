@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 		<style>
@@ -19,14 +18,13 @@
 		  <tr>
 		    <th>Username</th>
 		    <th>Email</th>		
-		    <th>Approved</th>
+		    <th>Account Type</th>
 		  </tr>
 		  <tr data-ng-repeat= "user in users">
 		     <td> {{user.username}} </td>
 		     <td> {{user.email}} </td>
-		     <td> <button> Approve </button><button> Deny</button> </td>
+		     <td> <button> Edit </button></td>
 		  </tr>
 		</table>
-
 	</body>
 </html>
