@@ -334,15 +334,5 @@ With the following passed in the raw body of the post request.
 ```
 *Notice that color can be any css string (hex or name)*
 
-
-
-
-
-
-
-
-    
-
-
-
-
+### For more information
+See http://bridgesuncc.github.io/ for tutorial on how students can use BRIDGES for interacting with data and visualizing the result of executing their data structures programming assignments. 
