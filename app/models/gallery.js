@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var a = document.createElement('assignments.js');
 //Authenticate Schema
 var Gallery =  new Schema ({
 	

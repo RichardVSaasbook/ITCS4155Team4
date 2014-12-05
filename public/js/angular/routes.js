@@ -24,6 +24,15 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 			"form@signup": {templateUrl: "/angular_templates/users/signup/form.html", controller: 'UsersCtrl'}
 		}
 	})
+	.state("user-home", {
+		url: "/home",
+		controller: 'UsersCtrl',
+		views: {
+			"content": {templateUrl: "/angular_templates/users/layout.html", controller: 'UsersCtrl'},
+			"form@user-home": {templateUrl: "/angular_templates/users/profile/form.html", controller: 'UsersCtrl'},
+			"info@user-home": {templateUrl: "/angular_templates/users/profile/info.html", controller: 'UsersCtrl'}
+		}
+	})
 	.state("404", {
 		url: "/404",
 		views: {
