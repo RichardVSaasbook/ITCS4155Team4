@@ -84,6 +84,7 @@ module.exports = function(app, passport, streamable) {
 
     //assignment routes
     var assignments = require('../app/controllers/assignments.js')
+    var angularAssignments = require('../app/controllers/angular_assignments.js')
     app.post('/assignments/:assignmentID',
         hasAccess, assignments.upload, handleError)
     app.post('/assignments/:assignmentID/share/:value',
@@ -91,12 +92,13 @@ module.exports = function(app, passport, streamable) {
     app.post('/assignments/:assignmentID/vistype/:value',
         hasAccess, assignments.updateVistype, handleError)
     app.get('/assignments/:assignmentID/:username',
-        assignments.show, handleError)
+        angularAssignments.show, handleError)
     //app.get('/assignments/:username/:assignmentNumber', assignments.viewD3)
 
     //gallery routes
     var gallery = require('../app/controllers/gallery.js')
-    app.get('/assignments/:assignmentNumber', gallery.view, handleError)
+    var angularGallery = require('../app/controllers/angular_gallery.js')
+    app.get('/assignments/:assignmentNumber', angularGallery.view, handleError)
     //app.get('/assignments/:assignmentID', gallery.view)
 
     app.post('/users/session',

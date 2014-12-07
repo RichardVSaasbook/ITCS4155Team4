@@ -7,10 +7,6 @@ bridges.controller('ApplicationCtrl', ['$scope', '$http', '$state', function($sc
 		$scope.isLoggedIn = $scope.user.username != null
 	})
 
-	$scope.getExtraCSS = function() { }
-	$scope.getExtraJS = function() { }
-	$scope.getExtraHead = function() { }
-
 	$scope.logout = function() {
 		$scope.isLoggedIn = false
 		$http.post("/logout").success(function() {

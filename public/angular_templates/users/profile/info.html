@@ -1,19 +1,16 @@
-if(user)
-<legend>Add additional datasources</legend>
-
-if(!(acct.domainProvider=="twitter.com")) href="/connect/twitter" class="webicon twitter large"></a>
-<div class = "webicon facebook large inactive"></div>
-<div class = "webicon foursquare large inactive"></div>
-<div class = "webicon yelp large inactive"></div>
-<div class = "webicon linkedin large inactive"></div>
-<div class = "webicon.flickr.large.inactive"></div>
-<div class = "webicon linkedin large inactive"></div>
-<div class = "webicon.flickr.large.inactive"></div> 
-<div class = "webicon.google.large.inactive"></div>
-
- if (acct.domainProvider)
-
-<legend> Remove authenticated datasources </legend>
-
-if (acct.domainProvider=="twitter.com") 
-<div> a(href="/disconnect/twitter").webicon.twitter.large </div>
+<div data-ng-if="user">
+	<legend>Add additional datasources</legend>
+	<div class="svg">
+		<a href="/angular/#/connect/twitter" class="webicon twitter large"></a>
+		<div class="webicon facebook large inactive"></div>
+		<div class="webicon foursquare large inactive"></div>
+		<div class="webicon yelp large inactive"></div>
+		<div class="webicon linkedin large inactive"></div>
+		<div class="webicon flickr large inactive"></div>
+		<div class="webicon google large inactive"></div>
+	</div>
+	<div data-ng-if="acct.domainProvider">
+		<legend>Remove authenticated datasources</legend>
+		<a href="/angular/#/disconnect/twitter" class="webicon twitter large" data-ng-if="acct.domainProvider=='twitter.com'"></a>
+	</div>
+</div>

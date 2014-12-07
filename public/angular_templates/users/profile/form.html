@@ -1,58 +1,67 @@
-if(user)
+<div data-ng-if="user">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">User Information</h3>
+		</div>
+
+		<div class="panel-body">
+			<div>
+				<strong class="col-lg-4">User Name:</strong>
+				<div id="user">{{ user.username }}</div>
+			</div>
+
+			<div>
+				<strong class="col-lg-4">Email:</strong>
+				<div id="email">{{ user.email }}</div>
+			</div>
+
+			<div>
+				<strong class="col-lg-4">API Sha1 Key:</strong>
+				<div id="api">{{ user.apikey }}</div>
+			</div>
+
+			<br />
+
+			<input id="getKey" class="btn btn-block btn-info" value="Generate new API key" />
+
+			<hr />
+
+			<div data-ng-if="acct.domainProvider">
+				<strong class="col-lg-4">Authenticated: {{ acct.domainProvider }}</strong>
+			</div>
+
+			<div data-ng-if="!acct.domainProvider">
+				<strong class="col-lg-6">Not authenticated</strong>
+			</div>
+		</div>
+	</div>
 
 	<div class="panel panel-info">
-  		<div class="panel-heading"> 
-   		 <h3 class="panel-title">User information</h3>
-  	</div>
- 	 <div class="panel-body"></div>
-
-	<div><strong class="col-lg-4">User Name:</strong>
-  		<div id="user">#user.username</div>
-
-		<div> <strong class="col-lg-4">User Name: </strong>
-  		<div id="user"></div>
-		</div>
-	<div> 
-  	
-	<Strong class="col-lg-4">Email: </Strong>
-  		<div id="email"></div>
-		</div>
-	<div>
-  	<Strong class="col-lg-4">API Sha1 Key:</Strong>
-  	<div id="api"></div>
-	</div><br>
-
-if(acct.domainProvider)
-
-
-	<div>
-		<Strong class="col-lg-4">Authenticated: </Strong>
-		#{acct.domainProvider}
-	else 
-	<div> 
-		<Strong class="col-lg-6">Not Authenticated: </Strong>
-	</div>
-	<div class="panel panel-info">
-  		<div class="panel-heading">
-  		  <h3 class="panel-title">Profile Options</h3>
- 		 </div>
- 		 <div class="panel-body"></div>
+		<div class="panel-heading">
+			<h3 class="panel-title">Profile Options</h3>
 		</div>
 
-	var src = "/users/"+user.id
-	<form action="src" method="post"></form>
-		<strong style="color:firebrick">WARNING: this will PERMANENTLY delete your account</strong>
-		<div style="margin-top:20px;">input(type="hidden", name="_csrf", value=csrftoken)   </div>
-	<div class="col-lg-8">
+		<div class="panel-body">
+			<form action="{{ '/users/' + user.id }}" method="post">
+				<strong style="color: firebrick">WARNING: this will PERMANENTLY delete your account</strong>
 
- 	<input id="input" type="text" placeholder="type your username, then" onkeyup="checkUser(this.value)" style="float:left; margin-right:25px;" class="form-control">
+				<div style="margin-top: 20px">
+					<input type="hidden" name="_csrf" data-ng-value="{{ csrftoken }}" />
+
+					<div class="col-lg-8">
+						<input id="input" class="form-control" type="text" placeholder="type your username, then" data-ng-keyup="checkUser(this.value)" style="float: left; margin-right: 25px" />
+					</div>
+
+					<input class="form-control" type="hidden" name="_method" value="DELETE" />
+
+					<input id="submit" class="btn btn-primary disabled" type="submit" value="Delete Account" />
+				</div>
+			</form>
+		</div>
 	</div>
+</div>
 
-	<input type="hidden" name="_method" value="DELETE" class="form-control">
-
-		<input id="submit" type="submit" value="Delete Account" class="btn btn-primary disabled">
-
-	else
-	<div class="well">
-  	<h1>You are not logged in! </h1><a href="/login" class="btn btn-primary">Log me in</a>
-	</div>
+<div class="well" data-ng-if="!user">
+	<h1>You are not logged in!</h1>
+	<a href="/angular/#/login" class="btn btn-primary">Log me in</a>
+</div>

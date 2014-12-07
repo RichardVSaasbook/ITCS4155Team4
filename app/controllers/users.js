@@ -161,6 +161,15 @@ exports.info = function(req, res) {
 		response.username = user.username
 		response.apikey = user.apikey
 	}
+
+	Account
+        .findOne({ email : user.email })
+        .exec(function (err, accts) {
+            if (err) return next(err)
+            if (!accts) accts = new Account
+            response.acct = accts
+        })
+
 	res.setHeader('Content-Type: application/json')
 	res.end(JSON.stringify(response))
 }

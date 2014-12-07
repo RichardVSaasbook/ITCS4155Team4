@@ -31,7 +31,9 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 			"content": {templateUrl: "/angular_templates/users/layout.html", controller: 'UsersCtrl'},
 			"form@user-home": {templateUrl: "/angular_templates/users/profile/form.html", controller: 'UsersCtrl'},
 			"info@user-home": {templateUrl: "/angular_templates/users/profile/info.html", controller: 'UsersCtrl'}
-		}
+		},
+		css: ['/css/webicons/webicons.css', '/css/inactive.css'],
+		js: ['/components/modernizr/modernizr.js', '/components/jquery/dist/jquery.min.js', '/js/main.js']
 	})
 	.state("404", {
 		url: "/404",
@@ -47,10 +49,10 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state("assignment",{
-		url: "/assignments/:assignmentID/:name",
+		url: "/assignments/:assignmentID/:username",
 		views: {
-			"content": {templateUrl:"/angular_templates/assignments/assignment/content.html", controller: 'GalleryCtrl'}, 
-			"footerjs": {templateUrl:"/angular_templates/assignments/assignment/footerjs.html", controller: 'GalleryCtrl'}
-		}
+			"content": {templateUrl:"/angular_templates/assignments/assignment/content.html", controller: 'AssignmentsCtrl'}
+		},
+		css: ["/css/assignment.css", "/components/css-toggle-switch/dist/toggle-switch.css"]
 	})
 })

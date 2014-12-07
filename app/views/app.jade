@@ -9,10 +9,6 @@ html(lang="en", data-ng-app="bridges", data-ng-controller="ApplicationCtrl")
 		link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
 
 		base(href='/angular/')
-
-		{{ getExtraCSS() }}
-		{{ getExtraJS() }}
-		{{ getExtraHead() }}
 	body
 		.navbar.navbar-default
 			.container
@@ -31,12 +27,16 @@ html(lang="en", data-ng-app="bridges", data-ng-controller="ApplicationCtrl")
 							a(data-ng-click='logout()', style='cursor: pointer') Log Out
 		.container.clearfix
 		div(data-ui-view="content")
-		div(data-ui-view="footerjs")
+		div#footerjs(data-ui-view="footerjs")
 		script(src='/components/angular/angular.min.js')
 		script(src='/components/angular-ui-router/release/angular-ui-router.min.js')
 		script(src='/js/angular/main.js')
 		script(src='/js/angular/routes.js')
+		script(src='/js/angular/factories/scriptService.js')
+		script(src='/js/angular/factories/d3service.js')
 		script(src='/js/angular/directives/head.js')
+		script(src='/js/angular/directives/visualization.js')
 		script(src='/js/angular/controllers/ApplicationCtrl.js')
 		script(src='/js/angular/controllers/UsersCtrl.js')
 		script(src='/js/angular/controllers/GalleryCtrl.js')
+		script(src='/js/angular/controllers/AssignmentsCtrl.js')
