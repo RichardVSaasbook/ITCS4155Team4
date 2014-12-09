@@ -4,6 +4,8 @@ bridges.directive('bridgesVisualization', ['d3Service', 'scriptService', functio
 		link: function(scope, element, attrs) {
 			d3Service.d3().then(function(d3) {
 				function updateVisualization(vistype) {
+					element.html('');
+
 					var width = element.prop('offsetWidth');
 					var height = element.prop('offsetHeight');
 					var scriptSource;

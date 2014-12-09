@@ -1,7 +1,8 @@
-<div id="assignmentCanvas" overflow="auto"> 
-	<div id="vis" data-bridges-visualization="{{ vistype }}" overflow="hidden" display="block" data-ng-style="visualizationStyle" class="assignmentContainer">
-		<div data-ng-if="vistype != 'nodelink' && vistype != 'graph' && vistype != 'queue'" style="color: #eb6864; font-size: 24px; padding: 50px;">{{ JSON.stringifty(data).error }}</div>
+<div id="assignmentCanvas" overflow="auto">
+	<div class="assignmentContainer vis" data-ng-if="vistype == 'error'">
+		<div style="color: #eb6864; font-size: 24px; padding: 50px;">Error: {{ data.error }}</div>
 	</div>
+	<div id="vis" data-bridges-visualization="{{ vistype }}" data-ng-style="visualizationStyle" class="assignmentContainer vis" data-ng-if="vistype != 'error'"></div>
 
 	<div id="optionContainer" class="assignmentContainer" data-ng-if="owner">
 		<div style="margin:10px 10px 10px 10px;">
@@ -14,9 +15,9 @@
 		  </div>
 		  <ul class="nav nav-pills nav-stacked">
 			<li class="nav-header"> <b>Choose your representation</b></li>
-			<li id="nodelink" data-ng-class="{active: isNodelink}"><a data-ng-click="setvis('nodelink')">Node-link diagram</a></li>
-			<li id="tree" data-ng-class="{active: isTree}"> <a data-ng-click="setvis('tree')">Tree </a></li>
-			<li id="queue" data-ng-class="{active: isQueue}"><a data-ng-click="setvis('queue')">Queue</a></li>
+			<li id="nodelink" data-ng-class="{active: vistype == 'nodelink'}"><a data-ng-click="setVisualizationType('nodelink')">Node-link diagram</a></li>
+			<li id="tree" data-ng-class="{active: vistype == 'tree'}"> <a data-ng-click="setVisualizationType('tree')">Tree </a></li>
+			<li id="queue" data-ng-class="{active: vistype == 'queue'}"><a data-ng-click="setVisualizationType('queue')">Queue</a></li>
 		  </ul><span>upload thumbnail</span>
 		</div>
 	</div>
