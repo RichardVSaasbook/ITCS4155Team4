@@ -62,8 +62,7 @@ exports.viewAssignments = function(req, res) {
 
     Assignment
         .find({
-            email: email,
-            shared: true
+            email: email
         })
         .exec(function(err, assignmentResult) {
             if (err) return next(err)
@@ -71,13 +70,15 @@ exports.viewAssignments = function(req, res) {
             if (!assignmentResult) return next("could not find " +
                 "user " + req.params.username)
 
-            var assignments = []
-            for (i = 0; i < assignmentResult.length; i++)
-                assignments.push(assignmentResult[i].assignmentID)
+		    var assignments = []
+		if (req.params.username == req.user.username) {
+		    for (i = 0; i < assignmentResult.length; i++)
+		        assignments.push(assignmentResult[i].assignmentID)
+		}
 
-			var response = {}
-			response.data = assignments
-			res.setHeader('Content-Type: application/json')
-			res.end(JSON.stringify(response))
+		var response = {}
+		response.data = assignments
+		res.setHeader('Content-Type: application/json')
+		res.end(JSON.stringify(response))
         })
 }
