@@ -8,4 +8,15 @@ bridges.controller('UsersCtrl', ['$scope', '$http', '$state', '$controller', fun
 	$http.get('/flashLoginMessage').success(function(data) {
 		$scope.message = data.message
 	})
+
+	$scope.checkUser = function() {
+		var username = document.getElementById("input").value;
+		var btn = document.getElementById("submit");
+        if (username == $scope.user.username)
+            btn.classList.remove('disabled');
+        else {
+            if (!(btn.classList.contains("disabled")))
+                btn.classList.add("disabled");
+        } 
+	}
 }])

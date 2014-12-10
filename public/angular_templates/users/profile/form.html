@@ -42,14 +42,14 @@
 		</div>
 
 		<div class="panel-body">
-			<form action="{{ '/users/' + user.id }}" method="post">
+			<form action="{{ '/users/' + user.email }}" method="post">
 				<strong style="color: firebrick">WARNING: this will PERMANENTLY delete your account</strong>
 
 				<div style="margin-top: 20px">
 					<input type="hidden" name="_csrf" data-ng-value="{{ csrftoken }}" />
 
 					<div class="col-lg-8">
-						<input id="input" class="form-control" type="text" placeholder="type your username, then" data-ng-keyup="checkUser(this.value)" style="float: left; margin-right: 25px" />
+						<input id="input" class="form-control" type="text" placeholder="type your username, then" data-ng-keyup="checkUser()" style="float: left; margin-right: 25px" />
 					</div>
 
 					<input class="form-control" type="hidden" name="_method" value="DELETE" />

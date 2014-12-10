@@ -102,13 +102,13 @@ module.exports = function(app, passport, streamable) {
 
     app.get('/connect/twitter',
         passport.authorize('twitter-authz', {
-            failureRedirect: '/login'
+            failureRedirect: '/angular/#/login'
         })
     )
 
     app.get('/auth/twitter/callback',
         passport.authorize('twitter-authz', {
-            failureRedirect: '/login'
+            failureRedirect: '/angular/#/login'
         }),
         function(req, res) {
             var user = req.user
@@ -117,7 +117,7 @@ module.exports = function(app, passport, streamable) {
             account.email = user.email
             account.save(function(err) {
                 if (err) return (err)
-                res.redirect('/home')
+                res.redirect('/angular/#/home')
 
             })
         }
