@@ -56,18 +56,13 @@ module.exports = function(app, passport, streamable) {
     //user routes
     var users = require('../app/controllers/users')
     app.get('/signup', users.signup, handleError)
-    app.post('/users', users.createAngular, handleError)
-	app.get('/user-info', users.info)
-	app.get('/csrf', users.csrf)
-	app.post('/logout', users.userLogout)
 
-	app.get('/flashLoginMessage', users.flashLoginMessage)
+	//app.get('/flashLoginMessage', users.flashLoginMessage)
 
     app.get('/login', users.login, handleError)
     app.get('/home', isLoggedIn, users.display, handleError)
     app.get('/home/:username', isLoggedIn, users.display, handleError)
 
-    app.delete('/users/:id', isLoggedIn, users.deletePerson)
     app.get('/users/apikey', users.getkey, handleError)
     app.get('/logout', users.logout)
 
@@ -84,27 +79,22 @@ module.exports = function(app, passport, streamable) {
 
     //assignment routes
     var assignments = require('../app/controllers/assignments.js')
-    var angularAssignments = require('../app/controllers/angular_assignments.js')
     app.post('/assignments/:assignmentID',
         hasAccess, assignments.upload, handleError)
     app.post('/assignments/:assignmentID/share/:value',
         hasAccess, assignments.updateVisibility, handleError)
     app.post('/assignments/:assignmentID/vistype/:value',
         hasAccess, assignments.updateVistype, handleError)
-    app.get('/assignments/:assignmentID/:username',
-        angularAssignments.show, handleError)
     //app.get('/assignments/:username/:assignmentNumber', assignments.viewD3)
 
     //gallery routes
     var gallery = require('../app/controllers/gallery.js')
-    var angularGallery = require('../app/controllers/angular_gallery.js')
-    app.get('/assignments/:assignmentNumber', angularGallery.view, handleError)
     //app.get('/assignments/:assignmentID', gallery.view)
 
     app.post('/users/session',
         passport.authenticate('local-log', {
             successRedirect: '/angular',
-            failureRedirect: '/angular/#login',
+            failureRedirect: '/angular/#/login',
             failureFlash: true
         }))
     //, 
@@ -133,8 +123,24 @@ module.exports = function(app, passport, streamable) {
         }
     )
 
-var angular = require('../app/controllers/angular')
- app.get('/angular', angular.index)
 
+	/****************************************
+	 * Routes created by ITCS 4155 - Group 4
+     ****************************************/
+	var angular = require('../app/controllers/angular')
+	var angularUsers = require('../app/controllers/angular_users.js')
+    var angularAssignments = require('../app/controllers/angular_assignments.js')
+    var angularGallery = require('../app/controllers/angular_gallery.js')
 
+	app.get('/angular', angular.index)
+
+    app.post('/users', angularUsers.createAngular, handleError)
+	app.get('/user-info', angularUsers.info)
+	app.get('/csrf', angularUsers.csrf)
+	app.post('/logout', angularUsers.userLogout)
+    app.delete('/users/:id', isLoggedIn, angularUsers.deletePerson)
+
+    app.get('/assignments/:assignmentID/:username', angularAssignments.show, handleError)
+
+    app.get('/assignments/:assignmentNumber', angularGallery.view, handleError)
 }
