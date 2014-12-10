@@ -39,9 +39,45 @@ exports.view = function(req, res) {
 
             getUsername(users, [], function(usernames) {
 				var response = {}
-				response.usernames = usernames
+				response.data = usernames
 				res.setHeader('Content-Type: application/json')
 				res.end(JSON.stringify(response))
             })
+        })
+}
+
+exports.viewAssignments = function(req, res) {
+    if (!req.params.username) 
+        return next("no username provided")
+
+	//var email = "rvoelker@uncc.edu"
+    User
+        .findOne({
+            username: req.params.username
+        })
+        .exec(function(err, user) {
+            if (err) return null;
+            email = user.email
+        })
+
+    Assignment
+        .find({
+            email: email,
+            shared: true
+        })
+        .exec(function(err, assignmentResult) {
+            if (err) return next(err)
+                
+            if (!assignmentResult) return next("could not find " +
+                "user " + req.params.username)
+
+            var assignments = []
+            for (i = 0; i < assignmentResult.length; i++)
+                assignments.push(assignmentResult[i].assignmentID)
+
+			var response = {}
+			response.data = assignments
+			res.setHeader('Content-Type: application/json')
+			res.end(JSON.stringify(response))
         })
 }

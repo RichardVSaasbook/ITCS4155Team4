@@ -143,4 +143,5 @@ module.exports = function(app, passport, streamable) {
     app.get('/assignments/:assignmentID/:username', angularAssignments.show, handleError)
 
     app.get('/assignments/:assignmentNumber', angularGallery.view, handleError)
+	app.get('/:username/assignments', angularGallery.viewAssignments, handleError)
 }

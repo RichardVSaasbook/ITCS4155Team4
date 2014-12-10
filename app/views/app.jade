@@ -24,6 +24,8 @@ html(lang="en", data-ng-app="bridges", data-ng-controller="ApplicationCtrl")
 						li
 							a(href='#/home') {{ user.username }}
 						li
+							a(data-ng-href='{{ "#/" + user.username + "/assignments" }}') My Assignments
+						li
 							a(data-ng-click='logout()', style='cursor: pointer') Log Out
 		.container.clearfix
 		div(data-ui-view="content")

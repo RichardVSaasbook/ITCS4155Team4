@@ -46,7 +46,15 @@ bridges.config(function($stateProvider, $urlRouterProvider) {
 		url: "/assignments/:assignmentID",
 		views: {
 			"content": {templateUrl:"/angular_templates/assignments/gallery.html", controller: 'GalleryCtrl'}
-		}
+		},
+		type: "id"
+	})
+	.state("user-gallery", {
+		url: "/:username/assignments",
+		views: {
+			"content": {templateUrl: "/angular_templates/assignments/studentGallery.html", controller: "GalleryCtrl"}
+		},
+		type: "username"
 	})
 	.state("assignment",{
 		url: "/assignments/:assignmentID/:username",
